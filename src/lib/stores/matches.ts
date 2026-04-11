@@ -12,4 +12,8 @@ const setMatches = (list: Match[]) => {
 	matches.set(list);
 };
 
-export { matches, groupedMatches, setMatches };
+const loadMatches = (list: Match[]) => {
+	setMatches(list);
+};
+
+export { matches, groupedMatches, loadMatches, setMatches };

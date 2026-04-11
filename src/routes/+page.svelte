@@ -1,14 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { groupedMatches, setMatches } from '$lib/stores/matches';
+	import { groupedMatches, loadMatches } from '$lib/stores/matches';
 	import type { PageData } from './$types';
+	import TopNav from '$lib/components/layout/TopNav.svelte';
+	import Sidebar from '$lib/components/layout/Sidebar.svelte';
+	import BetslipPanel from '$lib/components/layout/BetslipPanel.svelte';
+	import BannerCarousel from '$lib/components/banners/BannerCarousel.svelte';
+	import FilterTabs from '$lib/components/matches/FilterTabs.svelte';
+	import SportSection from '$lib/components/matches/SportSection.svelte';
 
 	let isLoading = true;
-	const loadDelayMs = 2500;
+	const loadDelayMs = 3000;
 	const { data } = $props<PageData>();
 
 	onMount(() => {
-		setMatches(data.matches);
+		loadMatches(data.matches);
 		const timer = setTimeout(() => {
 			isLoading = false;
 		}, loadDelayMs);
@@ -18,99 +24,55 @@
 </script>
 
 {#if isLoading}
-	<section class="flex min-h-[60vh] items-center justify-center">
-		<div class="flex flex-col items-center gap-4">
-			<div class="loader-wave flex items-end gap-2" aria-label="Loading" role="status">
-				<span class="loader-bar h-6 w-2 rounded-pill"></span>
-				<span class="loader-bar h-10 w-2 rounded-pill"></span>
-				<span class="loader-bar h-7 w-2 rounded-pill"></span>
-				<span class="loader-bar h-12 w-2 rounded-pill"></span>
-				<span class="loader-bar h-8 w-2 rounded-pill"></span>
-				<span class="loader-bar h-10 w-2 rounded-pill"></span>
-			</div>
+	<section class="flex min-h-screen items-center justify-center bg-[#0F172A]">
+		<div class="flex items-end gap-2" aria-label="Loading" role="status">
+			<span
+				class="h-6 w-2 origin-bottom rounded-pill bg-primary animate-bounce [animation-delay:0ms]"
+			></span>
+			<span
+				class="h-10 w-2 origin-bottom rounded-pill bg-accent animate-bounce [animation-delay:120ms]"
+			></span>
+			<span
+				class="h-7 w-2 origin-bottom rounded-pill bg-primary animate-bounce [animation-delay:240ms]"
+			></span>
+			<span
+				class="h-12 w-2 origin-bottom rounded-pill bg-accent animate-bounce [animation-delay:360ms]"
+			></span>
+			<span
+				class="h-8 w-2 origin-bottom rounded-pill bg-primary animate-bounce [animation-delay:480ms]"
+			></span>
+			<span
+				class="h-10 w-2 origin-bottom rounded-pill bg-accent animate-bounce [animation-delay:600ms]"
+			></span>
 		</div>
 	</section>
 {:else}
-	<section class="mx-auto flex min-h-[60vh] max-w-5xl flex-col gap-6 px-4 py-8">
-		{#if $groupedMatches.length === 0}
-			<div
-				class="h-64 w-full rounded-card border border-border/40 bg-surfaceLight/10"
-				aria-hidden="true"
-			></div>
-		{:else}
-			{#each $groupedMatches as group}
-				<div class="rounded-card border border-border/40 bg-surfaceLight/10 p-4">
-					<div class="flex items-center justify-between">
-						<div class="text-sm font-semibold text-textPrimary">
-							{group.competition_name}
+	<section class="min-h-screen bg-[#0F172A] text-textPrimary">
+		<div class="border-b border-border/60">
+			<TopNav />
+		</div>
+		<div class="grid min-h-[calc(100vh-64px)] grid-cols-[224px_1fr_320px]">
+			<aside class="sticky top-0 h-[calc(100vh-64px)] overflow-y-auto border-r border-border/60">
+				<Sidebar />
+			</aside>
+			<main class="min-h-[calc(100vh-64px)] overflow-y-auto px-6 py-6">
+				<div class="flex flex-col gap-6">
+					<BannerCarousel />
+					<FilterTabs />
+					{#if $groupedMatches.length === 0}
+						<div class="rounded-card border border-border/40 bg-surfaceLight/20 p-6 text-sm text-textMuted">
+							No matches available.
 						</div>
-						<div class="text-xs text-textMuted">{group.country_name}</div>
-					</div>
-					<div class="mt-3 divide-y divide-border/30">
-						{#each group.matches as match}
-							<div class="flex flex-wrap items-center gap-3 py-3">
-								<div class="min-w-[180px] text-sm text-textPrimary">
-									{match.home_team} vs {match.away_team}
-								</div>
-								<div class="text-xs text-textMuted">{match.start_time}</div>
-								<div class="ml-auto text-xs text-textMuted">
-									{match.main_market_name}
-								</div>
-							</div>
+					{:else}
+						{#each $groupedMatches as group}
+							<SportSection />
 						{/each}
-					</div>
+					{/if}
 				</div>
-			{/each}
-		{/if}
+			</main>
+			<aside class="sticky top-0 h-[calc(100vh-64px)] overflow-y-auto border-l border-border/60">
+				<BetslipPanel />
+			</aside>
+		</div>
 	</section>
 {/if}
-
-<style>
-	.loader-wave {
-		display: flex;
-		align-items: flex-end;
-		gap: 8px;
-	}
-
-	.loader-bar {
-		width: 8px;
-		border-radius: 9999px;
-		transform-origin: bottom;
-		background: #f97316;
-		animation: loaderWave 1.2s cubic-bezier(0.2, 0.9, 0.2, 1) infinite;
-	}
-
-	.loader-bar:nth-child(2) {
-		animation-delay: 100ms;
-	}
-
-	.loader-bar:nth-child(3) {
-		animation-delay: 200ms;
-	}
-
-	.loader-bar:nth-child(4) {
-		animation-delay: 300ms;
-	}
-
-	.loader-bar:nth-child(5) {
-		animation-delay: 400ms;
-	}
-
-	.loader-bar:nth-child(6) {
-		animation-delay: 500ms;
-	}
-
-	@keyframes loaderWave {
-		0%,
-		100% {
-			opacity: 0.4;
-			transform: scaleY(0.35);
-			background: #f97316;
-		}
-		50% {
-			opacity: 1;
-			transform: scaleY(1.25);
-			background: #3b82f6;
-		}
-	}
-</style>
