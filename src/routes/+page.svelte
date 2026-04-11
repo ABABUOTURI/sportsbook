@@ -5,6 +5,7 @@
 	import TopNav from '$lib/components/layout/TopNav.svelte';
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
 	import BetslipPanel from '$lib/components/layout/BetslipPanel.svelte';
+	import BannerCarousel from '$lib/components/banners/BannerCarousel.svelte';
 
 	const { data } = $props<{ data?: PageData }>();
 
@@ -21,7 +22,9 @@
 		<div class="h-full overflow-y-scroll overflow-x-hidden">
 			<Sidebar />
 		</div>
-		<main class="h-full overflow-y-scroll overflow-x-hidden bg-[#0F172A]"></main>
+		<main class="h-full overflow-y-scroll overflow-x-hidden bg-[#0F172A]">
+			<BannerCarousel />
+		</main>
 		<div class="h-full overflow-y-scroll overflow-x-hidden">
 			<BetslipPanel />
 		</div>
