@@ -40,11 +40,16 @@ const config: Config = {
 				'slide-in': {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(0)' }
+				},
+				'bg-pulse': {
+					'0%, 100%': { backgroundColor: '#0F172A' },
+					'50%': { backgroundColor: '#0d1520' }
 				}
 			},
 			animation: {
 				'pulse-dot': 'pulse-dot 1.2s ease-in-out infinite',
-				'slide-in': 'slide-in 0.3s ease-out'
+				'slide-in': 'slide-in 0.3s ease-out',
+				'pulse': 'bg-pulse 6s ease-in-out infinite'
 			}
 		}
 	},
