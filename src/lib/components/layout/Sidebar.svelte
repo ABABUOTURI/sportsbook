@@ -1,0 +1,19 @@
+<script lang="ts">
+	import SearchBar from '$lib/components/sidebar/SearchBar.svelte';
+	import QuickActions from '$lib/components/sidebar/QuickActions.svelte';
+	import TopGames from '$lib/components/sidebar/TopGames.svelte';
+	import TopLeagues from '$lib/components/sidebar/TopLeagues.svelte';
+</script>
+
+<aside
+	class="h-[calc(100vh-4rem)] w-56 overflow-y-auto border-r border-slate-700/50 bg-[#1E293B] hover:border-l-2 hover:border-l-orange-500 transition-all"
+>
+	<div class="flex flex-col gap-4 p-4">
+		<SearchBar />
+		<QuickActions />
+		<div class="h-px w-full bg-slate-700"></div>
+		<TopGames />
+		<div class="h-px w-full bg-slate-700"></div>
+		<TopLeagues />
+	</div>
+</aside>
