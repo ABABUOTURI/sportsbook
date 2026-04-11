@@ -26,7 +26,7 @@
 	];
 
 	let currentSlide = 0;
-	let interval: number;
+	let interval: ReturnType<typeof setInterval> | undefined;
 
 	function nextSlide() {
 		currentSlide = (currentSlide + 1) % banners.length;
@@ -77,7 +77,9 @@
 	<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
 		{#each banners as _, index}
 			<button
-				on:click={() => goToSlide(index)}
+				aria-label="Go to slide {index + 1}"
+				aria-current={currentSlide === index}
+				onclick={() => goToSlide(index)}
 				class="w-2 h-2 rounded-full transition-all duration-300 {currentSlide === index ? 'bg-orange-500 w-4' : 'bg-slate-500'}"
 			></button>
 		{/each}
@@ -85,7 +87,8 @@
 
 	<!-- Prev/Next arrows -->
 	<button
-		on:click={prevSlide}
+		aria-label="Previous slide"
+		onclick={prevSlide}
 		class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-orange-500/80 text-white rounded-full p-1.5 transition hidden md:block"
 	>
 		<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +96,8 @@
 		</svg>
 	</button>
 	<button
-		on:click={nextSlide}
+		aria-label="Next slide"
+		onclick={nextSlide}
 		class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-orange-500/80 text-white rounded-full p-1.5 transition hidden md:block"
 	>
 		<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -5,11 +5,11 @@
 		{ name: 'Navigator', src: '/images/games/navigator.png' }
 	];
 
-	let imageError = {
+	let imageError = $state<Record<string, boolean>>({
 		Aviator: false,
 		JetX: false,
 		Navigator: false
-	};
+	});
 
 	function handleImageError(name: string) {
 		imageError = { ...imageError, [name]: true };
@@ -31,7 +31,7 @@
 						src={game.src}
 						alt={game.name}
 						class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-						on:error={() => handleImageError(game.name)}
+						onerror={() => handleImageError(game.name)}
 					/>
 				{:else}
 					<div class="flex h-full w-full items-center justify-center bg-slate-900 text-sm font-semibold text-slate-200">

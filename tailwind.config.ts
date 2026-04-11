@@ -8,8 +8,10 @@ const config: Config = {
 			colors: {
 				primary: '#F97316',
 				primaryDark: '#EA580C',
+				primaryGlow: 'rgba(249,115,22,0.5)',
 				accent: '#3B82F6',
 				accentDark: '#1D4ED8',
+				accentGlow: 'rgba(59,130,246,0.5)',
 				surface: '#0F172A',
 				surfaceLight: '#1E293B',
 				card: '#1E293B',
@@ -24,63 +26,36 @@ const config: Config = {
 				pill: '9999px',
 				card: '12px',
 				btn: '8px'
+			},
+			boxShadow: {
+				orange: '0 0 12px rgba(249,115,22,0.5)',
+				blue: '0 0 12px rgba(59,130,246,0.5)',
+				bet: '0 4px 14px rgba(249,115,22,0.4)'
+			},
+			keyframes: {
+				'pulse-dot': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.3' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(100%)' },
+					'100%': { transform: 'translateX(0)' }
+				}
+			},
+			animation: {
+				'pulse-dot': 'pulse-dot 1.2s ease-in-out infinite',
+				'slide-in': 'slide-in 0.3s ease-out'
 			}
 		}
 	},
 	plugins: [
-		plugin(({ addUtilities, theme }) => {
-			const slate600 = theme('colors.slate.600') as string;
-			const slate700 = theme('colors.slate.700') as string;
+		plugin(({ addUtilities }) => {
 			addUtilities({
-				'.scrollbar-thin': {
-					'scrollbar-width': 'thin',
-					'scrollbar-color': `${slate600} transparent`
-				},
-				'.scrollbar-thumb-slate': {
-					'--scrollbar-thumb': slate600
-				},
-				'.scrollbar-track-transparent': {
-					'--scrollbar-track': 'transparent'
-				},
-				'.scrollbar-rounded': {
-					'--scrollbar-radius': '8px'
-				},
-				'.scrollbar-webkit': {
-					'&::-webkit-scrollbar': {
-						width: '8px',
-						height: '8px'
-					},
-					'&::-webkit-scrollbar-thumb': {
-						background: 'var(--scrollbar-thumb, transparent)',
-						borderRadius: 'var(--scrollbar-radius, 8px)'
-					},
-					'&::-webkit-scrollbar-track': {
-						background: 'var(--scrollbar-track, transparent)'
-					}
-				},
-				'.scrollbar-thumb-slate-700': {
-					'--scrollbar-thumb': slate700
-				},
-				'.scrollbar-hidden': {
-					'scrollbar-width': 'none',
-					'&::-webkit-scrollbar': {
-						display: 'none'
-					}
-				},
 				'.no-scrollbar': {
 					'-ms-overflow-style': 'none',
 					'scrollbar-width': 'none'
 				},
 				'.no-scrollbar::-webkit-scrollbar': {
-					display: 'none'
-				},
-				'.scroll-smooth-y': {
-					overflowY: 'scroll',
-					scrollBehavior: 'smooth',
-					'-ms-overflow-style': 'none',
-					'scrollbar-width': 'none'
-				},
-				'.scroll-smooth-y::-webkit-scrollbar': {
 					display: 'none'
 				}
 			});

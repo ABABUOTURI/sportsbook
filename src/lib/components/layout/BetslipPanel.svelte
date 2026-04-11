@@ -13,7 +13,7 @@
 	<div class="flex-shrink-0 flex gap-2 px-3 pt-3">
 		<button
 			type="button"
-			on:click={() => setTab('betslip')}
+			onclick={() => setTab('betslip')}
 			class={`flex-1 rounded-[10px] border-b-2 px-4 py-3 text-xs shadow-[0_6px_16px_rgba(15,23,42,0.35)] transition ${
 				$activeBetslipTab === 'betslip'
 					? 'bg-[#0F172A] text-white font-semibold border-orange-500'
@@ -24,7 +24,7 @@
 		</button>
 		<button
 			type="button"
-			on:click={() => setTab('jenga')}
+			onclick={() => setTab('jenga')}
 			class={`flex-1 rounded-[10px] border-b-2 px-4 py-3 text-xs shadow-[0_6px_16px_rgba(15,23,42,0.35)] transition ${
 				$activeBetslipTab === 'jenga'
 					? 'bg-[#0F172A] text-white font-semibold border-orange-500'

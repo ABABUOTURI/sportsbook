@@ -1,16 +1,6 @@
 <script lang="ts">
 	import { Trophy } from '$lib/icons';
 	import { availableLeagues, activeCompetition } from '$lib/stores/matches';
-
-	let leagues = [];
-	let active = null;
-
-	availableLeagues.subscribe(value => leagues = value);
-	activeCompetition.subscribe(value => active = value);
-
-	function handleLeagueClick(competitionName: string) {
-		activeCompetition.set(active === competitionName ? null : competitionName);
-	}
 </script>
 
 <div>
@@ -18,14 +8,15 @@
 		Top Leagues
 	</div>
 	<div class="space-y-1">
-		{#each leagues as league}
+		{#each $availableLeagues as league}
 			<button
 				type="button"
-				class="flex items-center justify-between px-3 py-2 cursor-pointer border-l-2 transition-colors
-					{active === league.competition_name
+				class={`flex items-center justify-between px-3 py-2 cursor-pointer border-l-2 transition-colors ${
+					$activeCompetition === league.competition_name
 						? 'border-orange-500 bg-orange-500/10'
-						: 'border-transparent hover:bg-slate-700/40 hover:border-blue-400/60'}"
-				on:click={() => handleLeagueClick(league.competition_name)}
+						: 'border-transparent hover:bg-slate-700/40 hover:border-blue-400/60'
+				}`}
+				onclick={() => activeCompetition.set($activeCompetition === league.competition_name ? null : league.competition_name)}
 			>
 				<div class="flex items-center gap-2">
 					<Trophy size={16} strokeWidth={1.8} class="text-blue-400 w-4 h-4" />
