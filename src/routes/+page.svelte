@@ -20,12 +20,14 @@
 {#if isLoading}
 	<section class="flex min-h-[60vh] items-center justify-center">
 		<div class="flex flex-col items-center gap-4">
-			<div class="flex items-center gap-2" aria-label="Loading" role="status">
-				<span class="h-3 w-3 animate-pulse rounded-full bg-primary"></span>
-				<span class="h-3 w-3 animate-pulse rounded-full bg-primary [animation-delay:150ms]"></span>
-				<span class="h-3 w-3 animate-pulse rounded-full bg-primary [animation-delay:300ms]"></span>
+			<div class="loader-wave flex items-end gap-2" aria-label="Loading" role="status">
+				<span class="loader-bar h-6 w-2 rounded-pill"></span>
+				<span class="loader-bar h-10 w-2 rounded-pill"></span>
+				<span class="loader-bar h-7 w-2 rounded-pill"></span>
+				<span class="loader-bar h-12 w-2 rounded-pill"></span>
+				<span class="loader-bar h-8 w-2 rounded-pill"></span>
+				<span class="loader-bar h-10 w-2 rounded-pill"></span>
 			</div>
-			<p class="text-sm text-textMuted">Loading sportsbook experience...</p>
 		</div>
 	</section>
 {:else}
@@ -62,3 +64,53 @@
 		{/if}
 	</section>
 {/if}
+
+<style>
+	.loader-wave {
+		display: flex;
+		align-items: flex-end;
+		gap: 8px;
+	}
+
+	.loader-bar {
+		width: 8px;
+		border-radius: 9999px;
+		transform-origin: bottom;
+		background: #f97316;
+		animation: loaderWave 1.2s cubic-bezier(0.2, 0.9, 0.2, 1) infinite;
+	}
+
+	.loader-bar:nth-child(2) {
+		animation-delay: 100ms;
+	}
+
+	.loader-bar:nth-child(3) {
+		animation-delay: 200ms;
+	}
+
+	.loader-bar:nth-child(4) {
+		animation-delay: 300ms;
+	}
+
+	.loader-bar:nth-child(5) {
+		animation-delay: 400ms;
+	}
+
+	.loader-bar:nth-child(6) {
+		animation-delay: 500ms;
+	}
+
+	@keyframes loaderWave {
+		0%,
+		100% {
+			opacity: 0.4;
+			transform: scaleY(0.35);
+			background: #f97316;
+		}
+		50% {
+			opacity: 1;
+			transform: scaleY(1.25);
+			background: #3b82f6;
+		}
+	}
+</style>
