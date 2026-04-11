@@ -28,6 +28,27 @@ export const toggleBet = (selection: BetSelection) => {
 	});
 };
 
+export const removeBet = (eventOddId: number) => {
+	betslipState.update((state) => {
+		state.selections = state.selections.filter((item) => item.event_odd_id !== eventOddId);
+		recalculateTotals(state);
+		return state;
+	});
+};
+
+export const updateStake = (stake: number) => {
+	betslipState.update((state) => {
+		state.stake = stake;
+		state.potentialWin = stake > 0 ? Number((state.totalOdds * stake).toFixed(2)) : 0;
+		return state;
+	});
+};
+
+export const placeBet = () => {
+	// Simulate bet placement and clear selections after placing
+	betslipState.set({ ...initialState });
+};
+
 export const clearBets = () => {
 	betslipState.set({ ...initialState });
 };
