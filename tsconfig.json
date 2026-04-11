@@ -4,13 +4,8 @@
 		"rewriteRelativeImportExtensions": true,
 		"allowJs": true,
 		"checkJs": true,
-		"baseUrl": ".",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"paths": {
-			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"]
-		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,

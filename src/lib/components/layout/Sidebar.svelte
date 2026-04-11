@@ -6,14 +6,12 @@
 </script>
 
 <aside
-	class="h-[calc(100vh-4rem)] w-56 overflow-y-auto border-r border-slate-700/50 bg-[#1E293B] hover:border-l-2 hover:border-l-orange-500 transition-all"
+	class="h-[calc(100vh-4rem)] w-96 overflow-y-scroll overflow-x-hidden border-r border-slate-700/50 bg-[#1E293B] text-textPrimary hover:border-l-2 hover:border-l-orange-500 transition-all"
 >
 	<div class="flex flex-col gap-4 p-4">
 		<SearchBar />
 		<QuickActions />
-		<div class="h-px w-full bg-slate-700"></div>
 		<TopGames />
-		<div class="h-px w-full bg-slate-700"></div>
 		<TopLeagues />
 	</div>
 </aside>

@@ -1,60 +1,78 @@
 <script lang="ts">
+	import type { ComponentType } from 'svelte';
 	import { activePage } from '$lib/stores/ui';
+	import { Flame, Home, PlaneTakeoff, Trophy, Tv } from '$lib/icons';
 
-	const tabs = [
+	type NavItem = {
+		id: 'home' | 'live' | 'aviator' | 'crash' | 'league';
+		label: string;
+		icon: ComponentType;
+		activeColor: string;
+		glowColor: string;
+	};
+
+	const navItems: NavItem[] = [
 		{
+			id: 'home',
 			label: 'Home',
-			icon: 'M3 9.5 12 3l9 6.5v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z'
+			icon: Home,
+			activeColor: 'bg-orange-500 border-orange-500',
+			glowColor: 'shadow-[0_0_12px_rgba(249,115,22,0.5)]'
 		},
 		{
+			id: 'live',
 			label: 'Live',
-			icon: 'M7 12a5 5 0 1 1 10 0 5 5 0 0 1-10 0m-3 0a8 8 0 1 0 16 0 8 8 0 0 0-16 0'
+			icon: Tv,
+			activeColor: 'bg-blue-600 border-blue-600',
+			glowColor: 'shadow-[0_0_12px_rgba(59,130,246,0.5)]'
 		},
 		{
+			id: 'aviator',
 			label: 'Aviator',
-			icon: 'M3 11l9-6 9 6-9 3z',
-			accent: 'text-red-400'
+			icon: PlaneTakeoff,
+			activeColor: 'bg-red-500 border-red-500',
+			glowColor: 'shadow-[0_0_12px_rgba(239,68,68,0.5)]'
 		},
 		{
+			id: 'crash',
 			label: 'Crash',
-			icon: 'M12 3l3 6-3 12-3-12z',
-			accent: 'text-orange-400'
+			icon: Flame,
+			activeColor: 'bg-orange-600 border-orange-600',
+			glowColor: 'shadow-[0_0_12px_rgba(234,88,12,0.5)]'
 		},
 		{
+			id: 'league',
 			label: 'League',
-			icon: 'M6 4h12v4a6 6 0 0 1-12 0z',
-			accent: 'text-blue-400'
+			icon: Trophy,
+			activeColor: 'bg-blue-500 border-blue-500',
+			glowColor: 'shadow-[0_0_12px_rgba(59,130,246,0.5)]'
 		}
-	] as const;
+	];
 
-	const setActive = (label: (typeof tabs)[number]['label']) => {
-		activePage.set(label);
+	const setActive = (id: NavItem['id']) => {
+		activePage.set(id);
 	};
 </script>
 
-<nav class="h-16 w-full bg-[#0F172A] border-b border-orange-500/60">
+<nav class="h-16 w-full bg-[#0F172A] border-b border-orange-500/60 rounded-b-[8px]">
 	<div class="mx-auto flex h-full max-w-5xl items-center justify-center gap-3 px-4">
-		{#each tabs as tab}
+		{#each navItems as item}
 			<button
 				type="button"
-				on:click={() => setActive(tab.label)}
+				on:click={() => setActive(item.id)}
 				class={`flex items-center gap-2 rounded-pill px-4 py-2 text-sm transition ${
-					$activePage === tab.label
-						? 'bg-orange-500 text-white font-semibold shadow-[0_0_12px_rgba(249,115,22,0.5)]'
+					$activePage === item.id
+						? `${item.activeColor} ${item.glowColor} text-white font-semibold`
 						: 'border border-slate-600 text-slate-300 hover:border-orange-400 hover:text-orange-400'
 				}`}
 			>
-				<svg
-					class={`h-4 w-4 ${tab.accent ?? ''} ${
-						$activePage === tab.label ? 'text-white' : ''
-					}`}
-					viewBox="0 0 24 24"
-					fill="currentColor"
-					aria-hidden="true"
-				>
-					<path d={tab.icon} />
-				</svg>
-				<span>{tab.label}</span>
+				<svelte:component
+					this={item.icon}
+					size={18}
+					strokeWidth={1.8}
+					class={$activePage === item.id ? 'text-white' : 'text-slate-400'}
+				/>
+				<span>{item.label}</span>
 			</button>
 		{/each}
 	</div>

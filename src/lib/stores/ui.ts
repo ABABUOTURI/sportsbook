@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
 
-type ActivePage = 'Home' | 'Live' | 'Aviator' | 'Crash' | 'League';
+type ActivePage = 'home' | 'live' | 'aviator' | 'crash' | 'league';
 
-const activePage = writable<ActivePage>('Home');
+const activePage = writable<ActivePage>('home');
+const activeBetslipTab = writable<'betslip' | 'jenga'>('jenga');
 
-export { activePage };
+export { activePage, activeBetslipTab };
