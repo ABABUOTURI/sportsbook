@@ -59,7 +59,7 @@
 		{#each navItems as item}
 			<button
 				type="button"
-				on:click={() => setActive(item.id)}
+				onclick={() => setActive(item.id)}
 				class={`flex items-center gap-2 rounded-pill px-4 py-2 text-sm transition ${
 					$activePage === item.id
 						? `${item.activeColor} ${item.glowColor} text-white font-semibold`

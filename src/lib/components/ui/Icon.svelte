@@ -1,11 +1,16 @@
 <script lang="ts">
 	import type { ComponentType } from 'svelte';
-	import type { SvelteHTMLElements } from 'svelte/elements';
 
-	export let icon: ComponentType;
-	export let size: number = 18;
-	export let strokeWidth: number = 1.8;
-	export let class: string = '';
+	interface Props {
+		icon: ComponentType;
+		size?: number;
+		strokeWidth?: number;
+		class?: string;
+	}
+
+	const { icon, size = 18, strokeWidth = 1.8, class: className = '' }: Props = $props();
 </script>
 
-<svelte:component this={icon} {size} {strokeWidth} class={$$props.class} />
+{#if icon}
+	<svelte:component this={icon} {size} {strokeWidth} class={className} />
+{/if}
