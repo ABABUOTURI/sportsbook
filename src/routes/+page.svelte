@@ -46,48 +46,45 @@
 		.filter((group) => group.matches.length > 0));
 </script>
 
-<div class="w-full h-screen overflow-hidden bg-[#0F172A] grid" style="grid-template-rows: 4rem 1fr; grid-template-columns: 224px 1fr 320px;">
-	<div class="col-span-3 h-16 overflow-hidden relative">
+<div class="w-full h-screen flex flex-col bg-[#0F172A]">
+	<div class="h-16 flex-shrink-0">
 		<TopNav />
-		{#if $betslipState.selections.length > 0}
-			<div class="absolute top-3.5 right-6 flex items-center justify-center w-5 h-5 rounded-full bg-orange-500 text-white text-xs font-bold">
-				{$betslipState.selections.length}
-			</div>
-		{/if}
 	</div>
 
-	<div class="h-full overflow-y-auto overflow-x-hidden border-r border-slate-700/60 bg-[#1E293B]">
-		<Sidebar onsearch={(query) => (searchQuery = query)} />
-	</div>
-
-	<main
-		bind:this={mainContent}
-		class="h-full overflow-y-auto overflow-x-hidden bg-[#0F172A] px-4 py-3 animate-[pulse_6s_ease-in-out_infinite]"
-	>
-		<div class="space-y-4">
-			<BannerCarousel />
-			<div class="rounded-[18px] border border-slate-700/70 bg-[#0F172A] p-4 shadow-bet">
-				<FilterTabs />
-			</div>
-			<div class="space-y-5">
-				{#if groupedDisplay.length > 0}
-					{#each groupedDisplay as group}
-						<SportSection {group} />
-					{/each}
-				{:else}
-					<div class="rounded-3xl border border-slate-700/60 bg-[#1E293B] p-8 text-center text-slate-400 flex flex-col items-center justify-center gap-3 min-h-[300px]">
-						<svg viewBox="0 0 24 24" class="w-12 h-12 text-orange-500/40" fill="none" stroke="currentColor" stroke-width="2">
-							<circle cx="12" cy="12" r="10" />
-							<path d="M12 8v4l3 2" />
-						</svg>
-						<p class="text-sm">No matches found</p>
-					</div>
-				{/if}
-			</div>
+	<div class="flex flex-1 overflow-hidden">
+		<div class="w-64 flex-shrink-0">
+			<Sidebar onsearch={(query) => (searchQuery = query)} />
 		</div>
-	</main>
 
-	<div class="h-full overflow-y-auto overflow-x-hidden p-4 bg-[#1E293B]">
-		<BetslipPanel />
+		<main
+			bind:this={mainContent}
+			class="flex-1 overflow-y-auto overflow-x-hidden bg-[#0F172A] px-4 py-3"
+		>
+			<div class="space-y-4 max-w-6xl mx-auto">
+				<BannerCarousel />
+				<div class="rounded-[18px] border border-slate-700/70 bg-[#0F172A] p-4 shadow-bet">
+					<FilterTabs />
+				</div>
+				<div class="space-y-5">
+					{#if groupedDisplay.length > 0}
+						{#each groupedDisplay as group}
+							<SportSection {group} />
+						{/each}
+					{:else}
+						<div class="rounded-3xl border border-slate-700/60 bg-[#1E293B] p-8 text-center text-slate-400 flex flex-col items-center justify-center gap-3 min-h-[300px]">
+							<svg viewBox="0 0 24 24" class="w-12 h-12 text-orange-500/40" fill="none" stroke="currentColor" stroke-width="2">
+								<circle cx="12" cy="12" r="10" />
+								<path d="M12 8v4l3 2" />
+							</svg>
+							<p class="text-sm">No matches found</p>
+						</div>
+					{/if}
+				</div>
+			</div>
+		</main>
+
+		<div class="w-80 flex-shrink-0 flex flex-col border-l border-slate-700/50 bg-[#1E293B] overflow-y-auto">
+			<BetslipPanel />
+		</div>
 	</div>
 </div>

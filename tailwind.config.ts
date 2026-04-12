@@ -44,12 +44,17 @@ const config: Config = {
 				'bg-pulse': {
 					'0%, 100%': { backgroundColor: '#0F172A' },
 					'50%': { backgroundColor: '#0d1520' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
 				}
 			},
 			animation: {
 				'pulse-dot': 'pulse-dot 1.2s ease-in-out infinite',
 				'slide-in': 'slide-in 0.3s ease-out',
-				'pulse': 'bg-pulse 6s ease-in-out infinite'
+				'pulse': 'bg-pulse 6s ease-in-out infinite',
+				'fade-in': 'fade-in 0.5s ease-out forwards'
 			}
 		}
 	},
@@ -62,6 +67,29 @@ const config: Config = {
 				},
 				'.no-scrollbar::-webkit-scrollbar': {
 					display: 'none'
+				},
+				'.scrollbar-thin': {
+					'scrollbar-width': 'thin'
+				},
+				'.scrollbar-thin::-webkit-scrollbar': {
+					width: '6px',
+					height: '6px'
+				},
+				'.scrollbar-track-slate-900': {
+					'scrollbar-color': '#0F172A #0F172A'
+				},
+				'.scrollbar-track-slate-900::-webkit-scrollbar-track': {
+					backgroundColor: '#0F172A'
+				},
+				'.scrollbar-thumb-slate-700': {
+					'scrollbar-color': '#334155 #0F172A'
+				},
+				'.scrollbar-thumb-slate-700::-webkit-scrollbar-thumb': {
+					backgroundColor: '#334155',
+					borderRadius: '3px'
+				},
+				'.hover\\:scrollbar-thumb-orange-500::-webkit-scrollbar-thumb:hover': {
+					backgroundColor: '#F97316'
 				}
 			});
 		})
