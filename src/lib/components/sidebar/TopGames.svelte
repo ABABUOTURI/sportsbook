@@ -24,13 +24,13 @@
 		{#each games as game}
 			<button
 				type="button"
-				class="mx-3 mb-2 aspect-[3/1] w-full overflow-hidden rounded-lg cursor-pointer relative group ring-0 transition group-hover:ring-1 group-hover:ring-orange-500/60"
+				class="mx-3 mb-2 w-full overflow-hidden rounded-lg cursor-pointer relative group ring-0 transition group-hover:ring-1 group-hover:ring-orange-500/60 bg-slate-900"
 			>
 				{#if !imageError[game.name]}
 					<img
 						src={game.src}
 						alt={game.name}
-						class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+						class="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
 						onerror={() => handleImageError(game.name)}
 					/>
 				{:else}
