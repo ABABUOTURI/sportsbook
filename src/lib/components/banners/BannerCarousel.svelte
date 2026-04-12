@@ -1,25 +1,26 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
+	import { base } from '$app/paths';
 
 	const banners = [
 		{
 			title: 'Sports Welcome Bonus',
 			subtitle: '100% up to £50 on first deposit',
-			image: '/images/banners/banner-welcome.png',
+			image: `${base}/images/banners/banner-welcome.png`,
 			cta: 'Claim Now',
 			ctaStyle: 'orange'
 		},
 		{
 			title: 'Early Payout',
 			subtitle: 'On a 2-goal or 20-point lead',
-			image: '/images/banners/banner-earlypayout.png',
+			image: `${base}/images/banners/banner-earlypayout.png`,
 			cta: 'Learn More',
 			ctaStyle: 'blue'
 		},
 		{
 			title: 'Sports Welcome Bonus',
 			subtitle: '100% up to £50 on first deposit',
-			image: '/images/banners/banner-welcome2.png',
+			image: `${base}/images/banners/banner-welcome2.png`,
 			cta: 'Claim Now',
 			ctaStyle: 'orange'
 		}
@@ -49,16 +50,19 @@
 	});
 </script>
 
-<div class="relative overflow-hidden rounded-xl mx-0 h-36">
+<div class="relative overflow-hidden rounded-xl mx-0 h-36 w-full bg-slate-900">
 	<div
-		class="flex transition-transform duration-500 ease-in-out"
+		class="flex h-full transition-transform duration-500 ease-in-out"
 		style="transform: translateX(-{currentSlide * 100}%)"
 	>
 		{#each banners as banner, index}
-			<div
-				class="min-w-full h-full relative overflow-hidden rounded-xl bg-cover bg-center"
-				style="background-image: url({banner.image})"
-			>
+			<div class="min-w-full h-full relative overflow-hidden rounded-xl">
+				<img
+					src={banner.image}
+					alt={banner.title}
+					class="absolute inset-0 w-full h-full object-cover"
+					loading="lazy"
+				/>
 				<div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 				<div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white">
 					<h2 class="font-bold text-lg">{banner.title}</h2>
