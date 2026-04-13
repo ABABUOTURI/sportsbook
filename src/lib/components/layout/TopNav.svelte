@@ -79,9 +79,7 @@
 </div>
 
 <nav class="w-full h-16 max-[456px]:hidden bg-[#0F172A] border-b border-orange-500/30 flex items-center justify-center px-6">
-	<div class="w-full grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-		<div></div>
-		<div class="flex items-center justify-center gap-2">
+	<div class="flex items-center justify-center gap-2">
 			{#each navItems as item}
 				<button
 					type="button"
@@ -101,18 +99,5 @@
 					<span>{item.label}</span>
 				</button>
 			{/each}
-		</div>
-		<div class="justify-self-end w-full max-w-[220px]">
-			<div class="relative flex items-center">
-				<Search size={16} strokeWidth={1.8} class="absolute left-3 text-slate-500 w-4 h-4" />
-				<input
-					type="text"
-					value={searchQuery}
-					placeholder="Search teams or leagues"
-					class="w-full rounded-lg bg-[#0F172A] border border-slate-700 text-sm text-slate-300 placeholder-slate-500 pl-9 pr-3 py-2 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/50 transition"
-					oninput={handleSearchInput}
-				/>
-			</div>
-		</div>
 	</div>
 </nav>
