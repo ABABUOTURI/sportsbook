@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Trophy } from '$lib/icons';
 	import { availableLeagues, activeCompetition } from '$lib/stores/matches';
 </script>
 
@@ -19,9 +18,11 @@
 				onclick={() => activeCompetition.set($activeCompetition === league.competition_name ? null : league.competition_name)}
 			>
 				<div class="flex items-center gap-2">
-					<Trophy size={16} strokeWidth={1.8} class="text-blue-400 w-4 h-4" />
+					<span class="text-blue-400 w-4 h-4 leading-none flex items-center justify-center">⚽</span>
 					<div>
-						<div class="text-sm text-slate-300">{league.competition_name}</div>
+						<div class={`text-sm ${$activeCompetition === league.competition_name ? 'text-orange-400' : 'text-slate-300'}`}>
+							{league.competition_name}
+						</div>
 						<div class="text-xs text-slate-500">{league.country_name}</div>
 					</div>
 				</div>

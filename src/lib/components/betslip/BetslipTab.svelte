@@ -1,39 +1,19 @@
 <script lang="ts">
-	import { Ticket, Trash2 } from '$lib/icons';
 	import BetslipEmptyState from '$lib/components/betslip/BetslipEmptyState.svelte';
-	import { betslipState, clearBets, removeBet, placeBet, updateStake } from '$lib/stores/betslip';
+	import { betslipState, clearBets, removeBet, updateStake } from '$lib/stores/betslip';
 
-	let stake = 0;
+	let stake = $state(0);
 
-	function handleStakeChange(event: Event) {
-		const value = Number((event.target as HTMLInputElement).value);
-		stake = Number.isNaN(value) ? 0 : value;
-		updateStake(stake);
-	}
+	$effect(() => {
+		updateStake(Number.isNaN(stake) ? 0 : stake);
+	});
 </script>
 
-<div class="flex h-full flex-col">
-	<div class="flex items-center justify-between px-4 py-3">
-		<div class="flex items-center gap-2 text-sm font-semibold text-orange-400">
-			<Ticket size={16} strokeWidth={2} class="text-orange-400" />
-			Betslip
-		</div>
-		<button
-			type="button"
-			onclick={clearBets}
-			class="flex items-center gap-1 text-xs text-slate-400 hover:text-red-400 transition"
-		>
-			<Trash2 size={16} strokeWidth={2} class="text-slate-400" />
-			Clear All
-		</button>
-	</div>
-
+<div class="flex flex-col h-full">
 	{#if $betslipState.selections.length === 0}
-		<div class="flex flex-1 flex-col items-center justify-center h-full gap-4 px-6">
-			<BetslipEmptyState />
-		</div>
+		<BetslipEmptyState />
 	{:else}
-		<div class="flex-1 overflow-y-auto">
+		<div class="overflow-y-auto flex-1">
 			{#each $betslipState.selections as selection}
 				<div class="relative px-3 py-3 border-b border-slate-800">
 					<div class="text-xs text-slate-400">{selection.home_team} v {selection.away_team}</div>
@@ -60,8 +40,7 @@
 					<input
 						type="number"
 						min="0"
-						value={stake}
-						oninput={handleStakeChange}
+						bind:value={stake}
 						class="w-32 rounded-lg border border-slate-700 bg-[#0F172A] px-3 py-2 text-sm text-white focus:border-orange-500 focus:outline-none"
 					/>
 				</div>
@@ -81,7 +60,7 @@
 					<button
 						type="button"
 						onclick={clearBets}
-						class="w-full rounded-lg border border-slate-700 bg-transparent py-3 text-sm font-semibold text-slate-400 hover:text-red-400 transition"
+						class="text-slate-400 hover:text-red-400 transition"
 					>
 						Clear All
 					</button>

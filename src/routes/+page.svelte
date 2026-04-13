@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import type { PageData } from './$types';
-	import { activeCompetition, activeFilter, filteredMatches, loadMatches } from '$lib/stores/matches';
-	import { betslipState } from '$lib/stores/betslip';
+	import { activeFilter, filteredMatches, loadMatches } from '$lib/stores/matches';
 	import TopNav from '$lib/components/layout/TopNav.svelte';
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
 	import BetslipPanel from '$lib/components/layout/BetslipPanel.svelte';
@@ -46,21 +45,20 @@
 		.filter((group) => group.matches.length > 0));
 </script>
 
-<div class="w-full h-screen flex flex-col bg-[#0F172A]">
-	<div class="h-16 flex-shrink-0">
+<div class="w-full h-screen overflow-hidden bg-[#0F172A] flex flex-col">
+	<div class="flex-shrink-0">
 		<TopNav />
 	</div>
 
-	<div class="flex flex-1 overflow-hidden">
-		<div class="w-64 flex-shrink-0">
+	<div class="flex-1 min-h-0 grid grid-cols-[256px_1fr_320px] overflow-hidden">
+		<div class="w-64 h-full overflow-y-scroll no-scrollbar bg-[#1E293B] border-r border-slate-700/50 sticky top-0">
 			<Sidebar onsearch={(query) => (searchQuery = query)} />
 		</div>
-
 		<main
 			bind:this={mainContent}
-			class="flex-1 overflow-y-auto overflow-x-hidden bg-[#0F172A] px-4 py-3"
+			class="min-h-0 overflow-y-scroll no-scrollbar px-4 py-3"
 		>
-			<div class="space-y-4 max-w-6xl mx-auto">
+			<div class="space-y-4">
 				<BannerCarousel />
 				<div class="rounded-[18px] border border-slate-700/70 bg-[#0F172A] p-4 shadow-bet">
 					<FilterTabs />
@@ -83,7 +81,7 @@
 			</div>
 		</main>
 
-		<div class="w-80 flex-shrink-0 flex flex-col border-l border-slate-700/50 bg-[#1E293B] overflow-y-auto">
+		<div class="w-80 h-full overflow-y-scroll no-scrollbar bg-[#1E293B] border-l border-slate-700/50 sticky top-0">
 			<BetslipPanel />
 		</div>
 	</div>

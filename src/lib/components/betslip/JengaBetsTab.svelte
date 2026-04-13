@@ -38,7 +38,7 @@
 		</p>
 	</div>
 
-	<div class="flex flex-wrap items-center justify-center gap-2">
+	<div class="flex items-center justify-center gap-2">
 		<div class="rounded-full border border-slate-700 bg-[#0F172A] px-3 py-1 text-[10px] text-slate-400">
 			Multi-select
 		</div>

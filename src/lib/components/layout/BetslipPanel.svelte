@@ -9,12 +9,12 @@
 	};
 </script>
 
-<aside class="mt-8 h-[calc(100%-32px)] overflow-hidden rounded-[10px] border border-slate-700/50 bg-[#1E293B]">
-	<div class="flex-shrink-0 flex gap-2 px-3 pt-3">
+<aside class="w-80 h-[calc(100vh-4rem)] bg-[#1E293B] border-l border-slate-700/50 overflow-hidden flex flex-col">
+	<div class="flex w-full border-b border-slate-700/50 flex-shrink-0">
 		<button
 			type="button"
 			onclick={() => setTab('betslip')}
-			class={`flex-1 rounded-[10px] border-b-2 px-4 py-3 text-xs shadow-[0_6px_16px_rgba(15,23,42,0.35)] transition ${
+			class={`flex-1 py-3 text-sm transition-all border-b-2 ${
 				$activeBetslipTab === 'betslip'
 					? 'bg-[#0F172A] text-white font-semibold border-orange-500'
 					: 'bg-[#1E293B] text-slate-400 border-transparent hover:text-white'
@@ -25,7 +25,7 @@
 		<button
 			type="button"
 			onclick={() => setTab('jenga')}
-			class={`flex-1 rounded-[10px] border-b-2 px-4 py-3 text-xs shadow-[0_6px_16px_rgba(15,23,42,0.35)] transition ${
+			class={`flex-1 py-3 text-sm transition-all border-b-2 ${
 				$activeBetslipTab === 'jenga'
 					? 'bg-[#0F172A] text-white font-semibold border-orange-500'
 					: 'bg-[#1E293B] text-slate-400 border-transparent hover:text-white'

@@ -14,7 +14,7 @@
 <div class="flex items-center gap-2 px-0 py-3">
 	<button
 		type="button"
-		class="rounded-full px-4 py-1.5 text-sm cursor-pointer transition-all duration-200 { $activeFilter === 'highlights' ? 'bg-orange-500 text-white font-semibold shadow-[0_0_10px_rgba(249,115,22,0.4)]' : 'bg-transparent border border-slate-600 text-slate-400 hover:border-orange-400 hover:text-orange-400' }"
+		class="flex-shrink-0 rounded-full px-4 py-1.5 text-sm cursor-pointer transition-all duration-200 { $activeFilter === 'highlights' ? 'bg-orange-500 text-white font-semibold shadow-[0_0_10px_rgba(249,115,22,0.4)]' : 'bg-transparent border border-slate-600 text-slate-400 hover:border-orange-400 hover:text-orange-400' }"
 		onclick={() => setFilter('highlights')}
 	>
 		<span>Highlights</span>
@@ -23,7 +23,7 @@
 
 	<button
 		type="button"
-		class="rounded-full px-4 py-1.5 text-sm cursor-pointer transition-all duration-200 { $activeFilter === 'live' ? 'bg-blue-600 text-white font-semibold' : 'bg-transparent border border-slate-600 text-slate-400 hover:border-orange-400 hover:text-orange-400' }"
+		class="flex-shrink-0 rounded-full px-4 py-1.5 text-sm cursor-pointer transition-all duration-200 { $activeFilter === 'live' ? 'bg-blue-600 text-white font-semibold' : 'bg-transparent border border-slate-600 text-slate-400' }"
 		onclick={() => setFilter('live')}
 	>
 		<span class="inline-flex items-center">
@@ -35,7 +35,7 @@
 
 	<button
 		type="button"
-		class="rounded-full px-4 py-1.5 text-sm cursor-pointer transition-all duration-200 { $activeFilter === 'upcoming' ? 'bg-blue-500 text-white font-semibold' : 'bg-transparent border border-slate-600 text-slate-400 hover:border-blue-400 hover:text-blue-400' }"
+		class="flex-shrink-0 rounded-full px-4 py-1.5 text-sm cursor-pointer transition-all duration-200 { $activeFilter === 'upcoming' ? 'bg-blue-500 text-white font-semibold' : 'bg-transparent border border-slate-600 text-slate-400 hover:border-blue-400 hover:text-blue-400' }"
 		onclick={() => setFilter('upcoming')}
 	>
 		<span>Upcoming</span>

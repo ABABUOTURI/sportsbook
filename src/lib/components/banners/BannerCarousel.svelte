@@ -50,7 +50,7 @@
 	});
 </script>
 
-<div class="relative overflow-hidden rounded-xl mx-0 h-36 w-full bg-slate-900">
+<div class="relative overflow-hidden rounded-xl mx-0 h-28 lg:h-36 mb-3 lg:mb-0 bg-slate-900">
 	<div
 		class="flex h-full transition-transform duration-500 ease-in-out"
 		style="transform: translateX(-{currentSlide * 100}%)"
@@ -65,7 +65,7 @@
 				/>
 				<div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
 				<div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white">
-					<h2 class="font-bold text-lg">{banner.title}</h2>
+					<h2 class="font-bold text-lg text-white">{banner.title}</h2>
 					<p class="text-slate-200 text-sm mt-1">{banner.subtitle}</p>
 					<button
 						class="text-xs px-3 py-1.5 rounded-full mt-2 font-semibold {banner.ctaStyle === 'orange' ? 'bg-orange-500 hover:bg-orange-600' : 'bg-blue-500 hover:bg-blue-600'} text-white"
@@ -93,7 +93,7 @@
 	<button
 		aria-label="Previous slide"
 		onclick={prevSlide}
-		class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-orange-500/80 text-white rounded-full p-1.5 transition hidden md:block"
+		class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-orange-500/80 text-white rounded-full p-1.5 transition hidden lg:block"
 	>
 		<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -102,7 +102,7 @@
 	<button
 		aria-label="Next slide"
 		onclick={nextSlide}
-		class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-orange-500/80 text-white rounded-full p-1.5 transition hidden md:block"
+		class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-orange-500/80 text-white rounded-full p-1.5 transition hidden lg:block"
 	>
 		<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

@@ -1,17 +1,21 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { Search, XCircle } from '$lib/icons';
 
-	let { onsearch }: { onsearch: (query: string) => void } = $props();
+	const dispatch = createEventDispatcher<{ search: string }>();
+	let { onsearch }: { onsearch?: (query: string) => void } = $props();
 	let searchQuery = $state('');
 
 	function handleInput(event: Event) {
 		searchQuery = (event.target as HTMLInputElement).value;
-		onsearch(searchQuery);
+		dispatch('search', searchQuery);
+		onsearch?.(searchQuery);
 	}
 
 	function clearSearch() {
 		searchQuery = '';
-		onsearch(searchQuery);
+		dispatch('search', searchQuery);
+		onsearch?.(searchQuery);
 	}
 </script>
 
