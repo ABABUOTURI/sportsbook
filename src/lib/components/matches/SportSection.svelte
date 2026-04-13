@@ -6,7 +6,7 @@
 	let { group } = $props<{ group: GroupedMatches }>();
 </script>
 
-<section class="mb-4 rounded-lg overflow-hidden ring-1 ring-slate-800 hover:ring-slate-700 transition-all">
+<section class="mb-4 rounded-lg overflow-hidden transition-all">
 	<div class="flex items-center justify-between bg-[#1E293B] px-4 py-2.5 sticky top-0 z-10 border-l-4 border-orange-500">
 		<div class="flex items-center">
 			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-400 w-5 h-5">

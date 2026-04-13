@@ -50,7 +50,7 @@
 
 <div class="w-full h-screen overflow-hidden bg-[#0F172A] flex flex-col">
 	<div class="flex-shrink-0">
-		<TopNav />
+		<TopNav onsearch={(query) => (searchQuery = query)} />
 	</div>
 
 	<div class="flex-1 min-h-0 grid grid-cols-[256px_1fr_320px] max-[456px]:grid-cols-1 overflow-hidden">
@@ -62,9 +62,11 @@
 			class="min-h-0 overflow-y-scroll no-scrollbar px-4 py-3 max-[456px]:px-3 max-[456px]:py-2 max-[456px]:pb-20"
 		>
 			<div class="space-y-4">
-				<BannerCarousel />
-				<div class="rounded-[18px] border border-slate-700/70 bg-[#0F172A] p-4 shadow-bet">
-					<FilterTabs />
+				<div class="sticky top-0 z-20 bg-[#0F172A] py-1 space-y-3 max-[456px]:pb-2">
+					<BannerCarousel />
+					<div class="rounded-[18px] bg-[#0F172A] p-4 shadow-bet max-[456px]:mt-1">
+						<FilterTabs />
+					</div>
 				</div>
 				<div class="space-y-5">
 					{#if groupedDisplay.length > 0}
