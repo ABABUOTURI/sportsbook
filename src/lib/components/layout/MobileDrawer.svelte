@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation'
   import { drawerOpen, activePage } from '$lib/stores/ui'
   import { activeCompetition, availableLeagues } from '$lib/stores/matches'
   import {
@@ -14,11 +15,23 @@
   ]
 
   function close() { $drawerOpen = false }
-  function goTo(id: string) { $activePage = id as any; close() }
+  const routes: Record<string, string> = {
+    home: '/',
+    live: '/live',
+    aviator: '/aviator',
+    crash: '/crash',
+    league: '/league'
+  }
+
+  function goTo(id: string) {
+    $activePage = id as any;
+    goto(routes[id] ?? '/');
+    close();
+  }
 </script>
 
 <div
-  class="fixed inset-0 bg-black/60 z-40 lg:hidden transition-opacity duration-300"
+  class="fixed inset-0 bg-black/60 z-40 hidden max-[456px]:block transition-opacity duration-300"
   class:opacity-100={$drawerOpen}
   class:opacity-0={!$drawerOpen}
   class:pointer-events-auto={$drawerOpen}
@@ -29,7 +42,7 @@
 />
 
 <div
-  class="fixed top-0 left-0 h-full w-72 z-50 bg-[#1E293B] lg:hidden flex flex-col overflow-y-scroll no-scrollbar border-r border-slate-700/50 transition-transform duration-300 ease-out"
+  class="fixed top-0 left-0 h-full w-72 z-50 bg-[#1E293B] hidden max-[456px]:flex flex-col overflow-y-scroll no-scrollbar border-r border-slate-700/50 transition-transform duration-300 ease-out"
   class:translate-x-0={$drawerOpen}
   class:-translate-x-full={!$drawerOpen}
 >

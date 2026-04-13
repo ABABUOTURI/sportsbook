@@ -2,6 +2,7 @@
 	import type { Match } from '$lib/types/match';
 	import OddButton from './OddButton.svelte';
 	import { get1x2, getBTTS, getDoubleChance } from '$lib/utils/getMarket';
+	import { showToast } from '$lib/stores/feedback';
 
 	let { match } = $props<{ match: Match }>();
 
@@ -66,7 +67,11 @@
 			{/if}
 		</div>
 	</div>
-	<button type="button" class="min-w-[42px] text-right self-end mb-[2px] text-[10px] text-blue-400 hover:text-orange-400 underline cursor-pointer transition-colors">
+	<button
+		type="button"
+		onclick={() => showToast('More markets landing coming soon')}
+		class="min-w-[42px] text-right self-end mb-[2px] text-[10px] text-blue-400 hover:text-orange-400 underline cursor-pointer transition-colors"
+	>
 		+{moreMarketsCount} More
 	</button>
 </div>

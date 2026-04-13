@@ -7,7 +7,7 @@
 </script>
 
 <div
-  class="fixed inset-0 bg-black/70 z-40 lg:hidden transition-opacity duration-300"
+  class="fixed inset-0 bg-black/70 z-40 hidden max-[456px]:block transition-opacity duration-300"
   class:opacity-100={$mobileBetslipOpen}
   class:opacity-0={!$mobileBetslipOpen}
   class:pointer-events-auto={$mobileBetslipOpen}
@@ -18,7 +18,7 @@
 />
 
 <div
-  class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[#1E293B] rounded-t-2xl flex flex-col transition-transform duration-300 ease-out"
+  class="fixed bottom-0 left-0 right-0 z-50 hidden max-[456px]:flex bg-[#1E293B] rounded-t-2xl flex-col transition-transform duration-300 ease-out"
   style="max-height: 85vh"
   class:translate-y-0={$mobileBetslipOpen}
   class:translate-y-full={!$mobileBetslipOpen}

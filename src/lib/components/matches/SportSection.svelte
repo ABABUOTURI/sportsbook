@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { GroupedMatches } from '$lib/types/match';
 	import MatchRow from './MatchRow.svelte';
+	import { showToast } from '$lib/stores/feedback';
 
 	let { group } = $props<{ group: GroupedMatches }>();
 </script>
@@ -19,7 +20,11 @@
 		</div>
 		<div class="flex items-center gap-2">
 			<span class="text-xs text-slate-400">{group.matches.length} matches</span>
-			<button type="button" class="text-slate-500 hover:text-orange-400 cursor-pointer">
+			<button
+				type="button"
+				onclick={() => showToast(`${group.competition_name} details coming soon`)}
+				class="text-slate-500 hover:text-orange-400 cursor-pointer"
+			>
 				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
 					<path d="M9 18l6-6-6-6" />
 				</svg>

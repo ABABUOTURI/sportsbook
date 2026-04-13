@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { goto } from '$app/navigation'
   import {
     ClipboardList, UserCircle, MessageCircle,
     UserPlus, Sparkles
   } from '$lib/icons'
   import { mobileBetslipOpen } from '$lib/stores/ui'
+  import { showToast } from '$lib/stores/feedback'
 
   const items = [
     { label: 'My Bets', icon: ClipboardList },
@@ -12,15 +14,23 @@
     { label: 'Affiliate', icon: UserPlus },
     { label: 'Promos', icon: Sparkles }
   ]
+
+  function open(label: string) {
+    if (label === 'My Bets') {
+      $mobileBetslipOpen = true
+      return
+    }
+    if (label === 'Profile') return goto('/profile')
+    if (label === 'Promos') return goto('/promos')
+    showToast(`${label} coming soon`)
+  }
 </script>
 
-<nav class="fixed bottom-0 left-0 right-0 z-30 h-16 bg-[#1E293B] border-t border-slate-700/50 flex items-center justify-around px-2 lg:hidden">
+<nav class="fixed bottom-0 left-0 right-0 z-30 h-16 bg-[#1E293B] border-t border-slate-700/50 hidden max-[456px]:flex items-center justify-around px-2">
   {#each items as item}
     <button
       type="button"
-      onclick={() => {
-        if (item.label === 'My Bets') $mobileBetslipOpen = true
-      }}
+      onclick={() => open(item.label)}
       class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full cursor-pointer text-slate-400 hover:text-orange-400 transition-colors duration-150 group bg-transparent border-none"
     >
       <svelte:component

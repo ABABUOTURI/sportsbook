@@ -5,6 +5,9 @@
 	import TopNav from '$lib/components/layout/TopNav.svelte';
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
 	import BetslipPanel from '$lib/components/layout/BetslipPanel.svelte';
+	import MobileDrawer from '$lib/components/layout/MobileDrawer.svelte';
+	import MobileBottomNav from '$lib/components/layout/MobileBottomNav.svelte';
+	import MobileBetslipSheet from '$lib/components/layout/MobileBetslipSheet.svelte';
 	import BannerCarousel from '$lib/components/banners/BannerCarousel.svelte';
 	import FilterTabs from '$lib/components/matches/FilterTabs.svelte';
 	import SportSection from '$lib/components/matches/SportSection.svelte';
@@ -50,13 +53,13 @@
 		<TopNav />
 	</div>
 
-	<div class="flex-1 min-h-0 grid grid-cols-[256px_1fr_320px] overflow-hidden">
-		<div class="w-64 h-full overflow-y-scroll no-scrollbar bg-[#1E293B] border-r border-slate-700/50 sticky top-0">
+	<div class="flex-1 min-h-0 grid grid-cols-[256px_1fr_320px] max-[456px]:grid-cols-1 overflow-hidden">
+		<div class="w-64 h-full overflow-y-scroll no-scrollbar bg-[#1E293B] border-r border-slate-700/50 sticky top-0 max-[456px]:hidden">
 			<Sidebar onsearch={(query) => (searchQuery = query)} />
 		</div>
 		<main
 			bind:this={mainContent}
-			class="min-h-0 overflow-y-scroll no-scrollbar px-4 py-3"
+			class="min-h-0 overflow-y-scroll no-scrollbar px-4 py-3 max-[456px]:px-3 max-[456px]:py-2 max-[456px]:pb-20"
 		>
 			<div class="space-y-4">
 				<BannerCarousel />
@@ -81,8 +84,12 @@
 			</div>
 		</main>
 
-		<div class="w-80 h-full overflow-y-scroll no-scrollbar bg-[#1E293B] border-l border-slate-700/50 sticky top-0">
+		<div class="w-80 h-full overflow-y-scroll no-scrollbar bg-[#1E293B] border-l border-slate-700/50 sticky top-0 max-[456px]:hidden">
 			<BetslipPanel />
 		</div>
 	</div>
 </div>
+
+<MobileDrawer />
+<MobileBottomNav />
+<MobileBetslipSheet />
