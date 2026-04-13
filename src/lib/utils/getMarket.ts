@@ -24,8 +24,12 @@ export const getBTTS = (match: Match): { yes: Odd; no: Odd } | null => {
 	const market = getMarket(match, 29);
 	if (!market) return null;
 
-	const yes = getOdd(market, '1');
-	const no = getOdd(market, '2');
+	const yes =
+		getOdd(market, '74') ??
+		market.odds.find((odd) => odd.outcome_name.toLowerCase() === 'yes' || odd.outcome_alias.toLowerCase() === 'yes');
+	const no =
+		getOdd(market, '76') ??
+		market.odds.find((odd) => odd.outcome_name.toLowerCase() === 'no' || odd.outcome_alias.toLowerCase() === 'no');
 
 	if (!yes || !no) return null;
 	return { yes, no };
@@ -37,9 +41,15 @@ export const getDoubleChance = (
 	const market = getMarket(match, 10);
 	if (!market) return null;
 
-	const oneOrX = getOdd(market, '1');
-	const oneOrTwo = getOdd(market, '2');
-	const xOrTwo = getOdd(market, '3');
+	const oneOrX =
+		getOdd(market, '9') ??
+		market.odds.find((odd) => odd.outcome_name.toLowerCase().replaceAll(' ', '') === '1orx');
+	const oneOrTwo =
+		getOdd(market, '10') ??
+		market.odds.find((odd) => odd.outcome_name.toLowerCase().replaceAll(' ', '') === '1or2');
+	const xOrTwo =
+		getOdd(market, '11') ??
+		market.odds.find((odd) => odd.outcome_name.toLowerCase().replaceAll(' ', '') === 'xor2');
 
 	if (!oneOrX || !oneOrTwo || !xOrTwo) return null;
 	return { oneOrX, oneOrTwo, xOrTwo };

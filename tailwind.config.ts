@@ -4,6 +4,13 @@ import plugin from 'tailwindcss/plugin';
 const config: Config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
+		screens: {
+			sm: '480px',
+			md: '768px',
+			lg: '1024px',
+			xl: '1280px',
+			'2xl': '1536px'
+		},
 		extend: {
 			colors: {
 				primary: '#F97316',
@@ -63,7 +70,8 @@ const config: Config = {
 			addUtilities({
 				'.no-scrollbar': {
 					'-ms-overflow-style': 'none',
-					'scrollbar-width': 'none'
+					'scrollbar-width': 'none',
+					'-webkit-overflow-scrolling': 'touch'
 				},
 				'.no-scrollbar::-webkit-scrollbar': {
 					display: 'none'
@@ -90,6 +98,12 @@ const config: Config = {
 				},
 				'.hover\\:scrollbar-thumb-orange-500::-webkit-scrollbar-thumb:hover': {
 					backgroundColor: '#F97316'
+				},
+				'.snap-x-mandatory': {
+					'scroll-snap-type': 'x mandatory'
+				},
+				'.snap-start': {
+					'scroll-snap-align': 'start'
 				}
 			});
 		})
